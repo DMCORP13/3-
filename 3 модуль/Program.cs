@@ -8,7 +8,7 @@ namespace _3_модуль
         {
 
 
-            string моеимя = "Artur";
+            string моеимя = "Артур";
             byte мойвозраст = 32;
             bool питомец = true;
             double размеробуви = 41.5;
@@ -17,8 +17,10 @@ namespace _3_модуль
             Console.WriteLine("мне " + мойвозраст);
             Console.WriteLine("У тебя есть питомец? " + питомец);
             Console.WriteLine("мой размер обуви " + размеробуви);
-
-
+            Console.WriteLine("IntMin {0} ", int.MinValue);
+            Console.WriteLine("IntMax {0} ", int.MaxValue);
+            Console.WriteLine("byte {0} ", byte.MinValue);
+            Console.WriteLine("byte {0} ", byte.MaxValue);
 
 
             Console.ReadKey();
