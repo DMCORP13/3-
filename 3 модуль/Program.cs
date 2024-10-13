@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Reflection.Metadata;
+using System.Xml.Linq;
 
 namespace _3_модуль
 {
@@ -6,26 +7,13 @@ namespace _3_модуль
     {
         static void Main(string[] args)
         {
-
-
-            string моеимя = "Артур";
-            byte мойвозраст = 32;
-            bool питомец = true;
-            double размеробуви = 41.5;
-
-            Console.WriteLine("мое имя " + моеимя);
-            Console.WriteLine("мне " + мойвозраст);
-            Console.WriteLine("У тебя есть питомец? " + питомец);
-            Console.WriteLine("мой размер обуви " + размеробуви);
-            Console.WriteLine("IntMin {0} ", int.MinValue);
-            Console.WriteLine("IntMax {0} ", int.MaxValue);
-            Console.WriteLine("byte {0} ", byte.MinValue);
-            Console.WriteLine("byte {0} ", byte.MaxValue);
-
-
-            Console.ReadKey();
-
-
+            Console.WriteLine("Ваше имя: ");
+            var name = Console.ReadLine();
+            Console.WriteLine("ваш возраст: ");
+            var age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Твое имя {0} возраст {1} ", name, age);
+            Console.WriteLine("Ваша дата рождения: ");
+            var birhdate = Console.ReadLine();
         }
     }
 }
