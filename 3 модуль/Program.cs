@@ -16,7 +16,7 @@ namespace _3_модуль
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("You colore is Red!");
             }
-            else if (colore == "Green")
+            else if (colore == "green")
             {
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Black;
