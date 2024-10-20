@@ -7,47 +7,28 @@ namespace _3_модуль
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Напишите свой любивый цвет на английском языке с малеькой буквы");
-            for (int i = 5; i > 1; i--)
+            int sum = 0;
+
+            while (true)
             {
-                Console.WriteLine("Iteration {0}", i);
-                switch (Console.ReadLine())
+                Console.WriteLine("Введите число");
+                var number = Convert.ToInt32(Console.ReadLine());
+
+                if (number < 0)
                 {
-                    case "red":
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is red!");
-                        break;
-
-                    case "green":
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is green!");
-                        break;
-
-                    case "cyan":
-                        Console.BackgroundColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is cyan!");
-                        break;
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Yellow;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is yellow!");
-                        break;
+                    continue;
                 }
+                else if (number == 0)
+                {
+                    break;
+                }
+
+                // number > 0
+                sum += number;
             }
-            
 
-            
-
-
-
-
+            Console.WriteLine("Итоговая сумма: {0}", sum);
         }
     }
 }
+            
