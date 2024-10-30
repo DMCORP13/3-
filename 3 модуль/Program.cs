@@ -1,34 +1,43 @@
-﻿using System.Reflection.Metadata;
+﻿using System.Drawing;
+using System.Net.NetworkInformation;
+using System.Reflection.Metadata;
 using System.Xml.Linq;
 
 namespace _3_модуль
 {
     internal class Program
     {
-        static void Main(string[] args)
+        class MainClass
         {
-            int sum = 0;
-
-            while (true)
+            public static void Main(string[] args)
             {
-                Console.WriteLine("Введите число");
-                var number = Convert.ToInt32(Console.ReadLine());
 
-                if (number < 0)
+                (string name,string lastname, int age, bool haspet) anketa;
+                Console.Write("Введите имя: ");
+                anketa.name = Console.ReadLine();
+                Console.Write("Введите возраст цифрами: ");
+                anketa.age = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Есть ли у вас питомец? Да или нет");
+                var haspets = true;
+
+                if (haspats==true)
                 {
-                    continue;
+                   
+
                 }
-                else if (number == 0)
+                else 
                 {
-                    break;
+                   
                 }
 
-                // number > 0
-                sum += number;
+
+                Console.WriteLine("Ваше имя: {0}", anketa.name);
+                Console.WriteLine("Ваш возраст: {0}", anketa.age);
+                Console.WriteLine("Есть ли у вас питомец?: {0}", anketa.haspet); 
+
+                Console.ReadKey();
+                
             }
-
-            Console.WriteLine("Итоговая сумма: {0}", sum);
         }
     }
 }
-            
