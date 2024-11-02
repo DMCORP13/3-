@@ -4,67 +4,111 @@ using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
+using System;
+using System.ComponentModel.Design;
 
 namespace _3_модуль
 {
-    internal class Program
+    class Program
     {
-        class MainClass
+
+
+        static void Main(string[] args)
         {
-            public static void Main(string[] args)
+            var userData = GetUserData();
+            DisplayUserData(userData);
+        }
+        
+        static (string Name, string Surname, int Age, string[] PetNames, string[] FavoriteColors) GetUserData()
+        {
+            Console.Write("Введите имя: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Введите фамилию: ");
+            string surname = Console.ReadLine();
+
+            int age = GetValidInt("Введите возраст (целое число больше 0): ");
+
+            Console.Write("Есть ли у вас питомец? (да/нет): ");
+
+            bool hasPet = Console.ReadLine().Trim().ToLower() == "да";
+            string[] petNames = null;
+
+            if (hasPet)
             {
-               
-                    var userData = GetUserData();
-                DisplayuserData(userData);
+                int petCount = GetValidInt("Введите количество питомцев (целое число больше 0): ");
+                petNames = GetPetNames(petCount);
             }
-            static (string Name, string lastname, int Age, string[] petNames ,string[] FavoriteColors) getUserData()
+
+            int colorCount = GetValidInt("Введите количество любимых цветов (целое число больше 0): ");
+            string[] favoriteColors = GetFavoriteColors(colorCount);
+
+            return (name, surname, age, petNames, favoriteColors);
+        }
+
+        static int GetValidInt(string prompt)
+        {
+            int result;
+            while (true)
             {
-             
-                    Console.WriteLine("Введите имя: ");
-                string name = Console.ReadLine();
-
-                Console.WriteLine("Введите фамилию:");
-                string lastname = Console.ReadLine();
-                int Age = GetValidInt("Введите возраст: ");
-
-                Console.WriteLine("Есть ли у вас питомец ? Да или нет: ");
-                bool hasPet = Console.ReadLine().Trim().ToLower() == "да";
-                string[] petNames = null;
-                if (hasPet)
-                {
-                    int peCount = GetValidInt("Введите количество питомцев: ");
-                    petNames = GetValidInt[petCount];
-                }
-                int colorCount = GetValidInt("Введите количество лювимых цветов ");
-                string[] FavoritColors = GetFavoriteColors(colorCount);
-
-                return (name, lastname, Age, petNames, FavoritColors);
-            }
-            static int GetValidInt(string promt)
-            {
-          
-                    int result;
-                while (true)
-                    
-                        Console.Write(promt);
+                Console.Write(prompt);
                 if (int.TryParse(Console.ReadLine(), out result) && result > 0)
                     return result;
                 else
-                    Console.WriteLine("Ошибка: ");
+                    Console.WriteLine("Ошибка: введите целое число больше 0.");
             }
-            static int GetPetNames(int petCount)
+        }
+
+     
+        static string[] GetPetNames(int petCount)
+        {
+            string[] petNames = new string[petCount];
+            for (int i = 0; i < petCount; i++)
             {
-                string[] petNames = new string[petCount];
-                for (int i = 0; i < petCount; i++)
+                Console.Write($"Введите кличку питомца {i + 1}: ");
+                petNames[i] = Console.ReadLine();
+            }
+            return petNames;
+        }
+
+     
+        static string[] GetFavoriteColors(int colorCount)
+        {
+            string[] favoriteColors = new string[colorCount];
+            for (int i = 0; i < colorCount; i++)
+            {
+                Console.Write($"Введите любимый цвет {i + 1}: ");
+                favoriteColors[i] = Console.ReadLine();
+            }
+            return favoriteColors;
+        }
+
+    
+        static void DisplayUserData((string Name, string Surname, int Age, string[] PetNames, string[] FavoriteColors) userData)
+        {
+            Console.WriteLine("\n--- Данные пользователя ---");
+            Console.WriteLine($"Имя: {userData.Name}");
+            Console.WriteLine($"Фамилия: {userData.Surname}");
+            Console.WriteLine($"Возраст: {userData.Age}");
+
+            if (userData.PetNames != null && userData.PetNames.Length > 0)
+            {
+                Console.WriteLine("Питомцы:");
+                foreach (var petName in userData.PetNames)
                 {
-                    Console.Write($"Введите кличку питомца{i + 1}: ");
-                    petNames[i] = Console.ReadLine();
+                    Console.WriteLine($" - {petName}");
                 }
-                return petNames;
+            }
+            else
+            {
+                Console.WriteLine("Питомцы: отсутствуют");
             }
 
-
-
+            Console.WriteLine("Любимые цвета:");
+            foreach (var color in userData.FavoriteColors)
+            {
+                Console.WriteLine($" - {color}");
+            }
         }
     }
 }
